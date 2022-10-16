@@ -1,0 +1,37 @@
+image: node:16.18.0
+
+cache:
+  - key: $CI_COMMIT_REF_SLUG
+    paths:
+      - server/node_modules/
+      - hara-crm-client/node_modules/
+
+stages: # List of stages for jobs, and their order of execution
+  - dependencies
+  - lint
+
+install-dependencies-server:
+  stage: dependencies
+  script:
+    - cd server
+    - npm i
+
+install-dependencies-client:
+  stage: dependencies
+  script:
+    - cd hara-crm-client
+    - npm i
+
+lint-server:
+  stage: lint
+  script:
+    - cd server
+    - npm run lint
+
+lint-client:
+  stage: lint
+  script:
+    - cd hara-crm-client
+    - npm run lint
+
+

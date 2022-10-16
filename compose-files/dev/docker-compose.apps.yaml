@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+
+  server:
+    hostname: server
+    image: node:16.18.0-bullseye
+    working_dir: /usr/src/app
+    command: 
+      - /bin/bash
+      - -c
+      - |
+        npm i
+        npm run start:dev
+    volumes:
+      - ../../server:/usr/src/app
+    ports: 
+      - 3000:3000
+    depends_on:
+        - mongo
+        - mongo-express
+    networks:
+      - front_end_network
+      - back_end_network
+    
+
+  client:
+    hostname: client
+    image: node:16.18.0-bullseye-slim
+    working_dir: /usr/src/app
+    command: 
+      - /bin/bash
+      - -c
+      - |
+        npm i
+        npm run start
+    volumes:
+      - ../../hara-crm-client:/usr/src/app
+    ports:
+      - 8080:8080
+    depends_on:
+      - server
+      - mongo
+      - mongo-express
+    networks:
+      - front_end_network
+
+  
+
+networks:
+  front_end_network:
+  back_end_network:
