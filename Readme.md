@@ -1,6 +1,6 @@
-# Hara CRM
+# React + NestJS + Compose project scaffold
 
-## Dev it
+## Use it
 
 Please use [nvm](https://github.com/nvm-sh/nvm) and the node version written in the [.nvmrc](./.nvmrc) file.
 

@@ -35,7 +35,7 @@ services:
         npm i
         npm run start
     volumes:
-      - ../../hara-crm-client:/usr/src/app
+      - ../../client:/usr/src/app
     ports:
       - 8080:8080
     depends_on:
